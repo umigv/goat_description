@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="bessie">
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="0.762 0.4572 0.3048"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <link name="left_wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.1016" radius="0.1651"/>
+            </geometry>
+            <material name="black"/>
+            <origin rpy="-1.5708 0 0" xyz="0.2856 0.2922 -0.11307"/>
+        </visual>
+    </link>
+
+    <link name="right_wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.1016" radius="0.1651"/>
+            </geometry>
+            <material name="black"/>
+            <origin rpy="1.5708 0 0" xyz="0.28575 -0.2922 -0.11307"/>
+        </visual>
+    </link>
+
+    <joint name="wheel0" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+
+    <joint name="wheel1" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel"/>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+</robot>
