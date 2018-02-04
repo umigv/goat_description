@@ -1,11 +1,22 @@
 <?xml version="1.0"?>
 <robot name="bessie">
+    <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+
     <link name="base_link">
         <visual>
             <geometry>
                 <box size="0.762 0.4572 0.3048"/>
             </geometry>
+            <material name="white"/>
         </visual>
+
+        <collision>
+            <geometry>
+                <box size="0.762 0.4572 0.3048"/>
+            </geometry>
+        </collision>
     </link>
 
     <link name="left_wheel">
@@ -14,8 +25,15 @@
                 <cylinder length="0.1016" radius="0.1651"/>
             </geometry>
             <material name="black"/>
-            <origin rpy="-1.5708 0 0" xyz="0.2856 0.2922 -0.11307"/>
+            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
         </visual>
+
+        <collision>
+            <geometry>
+                <cylinder length="0.1016" radius="0.1651"/>
+            </geometry>
+            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+        </collision>
     </link>
 
     <link name="right_wheel">
@@ -24,19 +42,30 @@
                 <cylinder length="0.1016" radius="0.1651"/>
             </geometry>
             <material name="black"/>
-            <origin rpy="1.5708 0 0" xyz="0.28575 -0.2922 -0.11307"/>
+            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
         </visual>
+
+        <collision>
+            <geometry>
+                <cylinder length="0.1016" radius="0.1651"/>
+            </geometry>
+            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+        </collision>
     </link>
 
+    <!-- left wheel joint -->
     <joint name="wheel0" type="continuous">
         <parent link="base_link"/>
         <child link="left_wheel"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 1.5708" xyz="0.2856 0.2922 -0.1131"/>
     </joint>
 
+    <!-- right wheel joint -->
     <joint name="wheel1" type="continuous">
         <parent link="base_link"/>
         <child link="right_wheel"/>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 -1.5708" xyz="0.28575 -0.2922 -0.1131"/>
     </joint>
 </robot>
