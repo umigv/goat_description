@@ -1,6 +1,6 @@
 ## Synopsis
 
-`urdf_bessie` contains the URDF and supporting files to describe our robot, informally known as Bessie.
+`urdf_goat` contains the URDF and supporting files to describe our robot, GOAT.
 
 ## Motivation
 
@@ -12,4 +12,4 @@ Clone this repository into your `catkin` workspace, then run `catkin_make`. Opti
 
 ## Contributors
 
-`urdf_bessie` is authored and maintained by Gregory Meyer.
+`urdf_goat` is authored and maintained by Gregory Meyer.
