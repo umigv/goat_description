@@ -53,6 +53,15 @@
         </collision>
     </link>
 
+    <link name="laser">
+        <visual>
+            <geometry>
+                <cylinder length="0.0349" radius="0.0381"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
     <!-- left wheel joint -->
     <joint name="wheel0" type="continuous">
         <parent link="base_link"/>
@@ -74,4 +83,10 @@
             <robotNamespace>/</robotNamespace>
         </plugin>
     </gazebo>
+
+    <joint name="laser_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="laser"/>
+        <origin xyz="-0.0572 0 0.1715"/>
+    </joint>
 </robot>
