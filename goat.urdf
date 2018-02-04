@@ -4,6 +4,9 @@
         <color rgba="1 1 1 1"/>
     </material>
 
+    <link name="base_footprint">
+    </link>
+
     <link name="base_link">
         <visual>
             <geometry>
@@ -88,5 +91,11 @@
         <parent link="base_link"/>
         <child link="laser"/>
         <origin xyz="-0.0572 0 0.1715"/>
+    </joint>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.2814"/>
     </joint>
 </robot>
