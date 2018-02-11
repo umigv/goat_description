@@ -97,9 +97,9 @@
     </joint>
 
     <joint name="base_footprint_joint" type="fixed">
-        <parent link="base_footprint"/>
-        <child link="base_link"/>
-        <origin xyz="0 0 0.2814"/>
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0 0 -0.2814"/>
     </joint>
 
     <joint name="encoders_joint" type="fixed">
