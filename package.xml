@@ -1,0 +1,12 @@
+<package format="2">
+    <name>urdf_goat</name>
+    <version>0.1.0</version>
+    <description>URDF for the GOAT.</description>
+    <maintainer email="gregjm@umich.edu">Gregory Meyer</maintainer>
+    <license>BSD 3-Clause License</license>
+
+    <url type="repository">https://github.com/umigv/urdf_goat</url>
+    <author>Gregory Meyer</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+</package>

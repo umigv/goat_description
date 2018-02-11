@@ -22,6 +22,9 @@
         </collision>
     </link>
 
+    <link name="encoders">
+    </link>
+
     <link name="left_wheel">
         <visual>
             <geometry>
@@ -97,5 +100,11 @@
         <parent link="base_footprint"/>
         <child link="base_link"/>
         <origin xyz="0 0 0.2814"/>
+    </joint>
+
+    <joint name="encoders_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="encoders"/>
+        <origin xyz="0.28575 0 -0.1131"/>
     </joint>
 </robot>
