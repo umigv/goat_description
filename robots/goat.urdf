@@ -4,9 +4,7 @@
         <color rgba="1 1 1 1"/>
     </material>
 
-    <link name="base_footprint">
-    </link>
-
+    <!-- center of the frame -->
     <link name="base_link">
         <visual>
             <geometry>
@@ -22,8 +20,25 @@
         </collision>
     </link>
 
+    <!-- center of the footprint of the frame -->
+    <link name="base_footprint">
+    </link>
+
+    <joint name="base_footprint_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="base_footprint"/>
+        <origin xyz="0 0 -0.2814"/>
+    </joint>
+
+    <!-- position between two front wheels - encoders centered around this -->
     <link name="encoders">
     </link>
+
+    <joint name="encoders_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="encoders"/>
+        <origin xyz="0.28575 0 -0.1131"/>
+    </joint>
 
     <link name="left_wheel">
         <visual>
@@ -42,6 +57,14 @@
         </collision>
     </link>
 
+    <!-- left wheel joint -->
+    <joint name="wheel0" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_wheel"/>
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 1.5708" xyz="0.2856 0.2922 -0.1131"/>
+    </joint>
+
     <link name="right_wheel">
         <visual>
             <geometry>
@@ -59,6 +82,14 @@
         </collision>
     </link>
 
+    <!-- right wheel joint -->
+    <joint name="wheel1" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_wheel"/>
+        <axis xyz="1 0 0"/>
+        <origin rpy="0 0 -1.5708" xyz="0.28575 -0.2922 -0.1131"/>
+    </joint>
+
     <link name="laser">
         <visual>
             <geometry>
@@ -68,20 +99,10 @@
         </visual>
     </link>
 
-    <!-- left wheel joint -->
-    <joint name="wheel0" type="continuous">
+    <joint name="laser_joint" type="fixed">
         <parent link="base_link"/>
-        <child link="left_wheel"/>
-        <axis xyz="1 0 0"/>
-        <origin rpy="0 0 1.5708" xyz="0.2856 0.2922 -0.1131"/>
-    </joint>
-
-    <!-- right wheel joint -->
-    <joint name="wheel1" type="continuous">
-        <parent link="base_link"/>
-        <child link="right_wheel"/>
-        <axis xyz="1 0 0"/>
-        <origin rpy="0 0 -1.5708" xyz="0.28575 -0.2922 -0.1131"/>
+        <child link="laser"/>
+        <origin xyz="-0.0572 0 0.1715"/>
     </joint>
 
     <gazebo>
@@ -89,22 +110,4 @@
             <robotNamespace>/</robotNamespace>
         </plugin>
     </gazebo>
-
-    <joint name="laser_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="laser"/>
-        <origin xyz="-0.0572 0 0.1715"/>
-    </joint>
-
-    <joint name="base_footprint_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="base_footprint"/>
-        <origin xyz="0 0 -0.2814"/>
-    </joint>
-
-    <joint name="encoders_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="encoders"/>
-        <origin xyz="0.28575 0 -0.1131"/>
-    </joint>
 </robot>
