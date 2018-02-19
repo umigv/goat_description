@@ -102,7 +102,7 @@
     <joint name="laser_joint" type="fixed">
         <parent link="base_link"/>
         <child link="laser"/>
-        <origin xyz="-0.0572 0 0.1715"/>
+        <origin rpy="3.1416 0 0" xyz="-0.0572 0 0.1715"/>
     </joint>
 
     <link name="imu">
