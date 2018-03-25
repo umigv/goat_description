@@ -120,7 +120,15 @@
     <joint name="imu_joint" type="fixed">
         <parent link="base_center"/>
         <child link="imu"/>
-        <origin rpy="0 0 3.1416" xyz="0.1922 0 0.1715"/>
+        <origin rpy="0 0 0" xyz="0.1922 0 0.1715"/>
+    </joint>
+    
+    <link name="gps">
+    </link>
+    
+    <joint name="gps_joint" type="fixed">
+        <parent link="base_center"/>
+        <child link="gps"/>
     </joint>
 
     <gazebo>
