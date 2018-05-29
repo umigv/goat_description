@@ -119,11 +119,17 @@
 
     <!-- position between two front wheels - encoders centered around this -->
     <link name="encoders">
+        <visual>
+            <geometry>
+                <box size="0.03 0.03 0.03"/>
+            </geometry>
+        </visual>
     </link>
 
     <joint name="encoders_joint" type="fixed">
-        <parent link="base_link"/>
+        <parent link="base_center"/>
         <child link="encoders"/>
+        <origin xyz="0.14 0 0"/>
     </joint>
 
     <link name="left_wheel">
@@ -239,14 +245,35 @@
     </joint>
 
     <link name="imu">
+        <visual>
+            <geometry>
+                <box size="0.0508 0.0508 0.025"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
     </link>
 
     <joint name="imu_joint" type="fixed">
-        <parent link="base_center"/>
+        <parent link="top_box"/>
         <child link="imu"/>
-        <origin rpy="0 0 0" xyz="0.1922 0 0.1715"/>
+        <origin rpy="0 0 0" xyz="0.0254 0 0.0699"/>
     </joint>
-    
+
+    <link name="camera">
+        <visual>
+            <geometry>
+                <box size="0.0381 0.1778 0.0381"/>
+            </geometry>
+            <material name="black"/>
+        </visual>
+    </link>
+
+    <joint name="camera_joint" type="fixed">
+        <parent link="base_center"/>
+        <child link="camera"/>
+        <origin xyz="0.23495 0 0.17145"/>
+    </joint>
+
     <link name="gps">
     </link>
     
