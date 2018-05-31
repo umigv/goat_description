@@ -154,7 +154,7 @@
         <parent link="base_center"/>
         <child link="left_wheel"/>
         <axis xyz="1 0 0"/>
-        <origin rpy="0 0 1.5708" xyz="0.2 -0.2922 -0.1"/>
+        <origin rpy="0 0 1.5708" xyz="0.2 0.2922 -0.1"/>
     </joint>
 
     <link name="right_wheel">
@@ -179,7 +179,7 @@
         <parent link="base_center"/>
         <child link="right_wheel"/>
         <axis xyz="1 0 0"/>
-        <origin rpy="0 0 -1.5708" xyz="0.2 0.2922 -0.1"/>
+        <origin rpy="0 0 -1.5708" xyz="0.2 -0.2922 -0.1"/>
     </joint>
 
     <link name="top_box">
@@ -259,7 +259,7 @@
         <origin rpy="0 0 0" xyz="0.0254 0 0.0699"/>
     </joint>
 
-    <link name="camera">
+    <link name="zed_center">
         <visual>
             <geometry>
                 <box size="0.0381 0.1778 0.0381"/>
@@ -270,7 +270,7 @@
 
     <joint name="camera_joint" type="fixed">
         <parent link="base_center"/>
-        <child link="camera"/>
+        <child link="zed_center"/>
         <origin xyz="0.23495 0 0.17145"/>
     </joint>
 
