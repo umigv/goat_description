@@ -275,11 +275,18 @@
     </joint>
 
     <link name="gps">
+        <visual>
+            <geometry>
+                <cylinder length="0.0127" radius="0.0254" />
+            </geometry>
+            <material name="black"/>
+        </visual>
     </link>
     
     <joint name="gps_joint" type="fixed">
-        <parent link="base_center"/>
+        <parent link="front_post"/>
         <child link="gps"/>
+        <origin xyz="0 0 0.26195"/>
     </joint>
 
     <gazebo>
