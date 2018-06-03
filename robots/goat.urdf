@@ -237,10 +237,10 @@
     <joint name="laser_base_joint" type="fixed">
         <parent link="top_box"/>
         <child link="laser_base"/>
-        <origin xyz="0.0254 0 0.1032"/>
+        <origin xyz="0.07 0 0.1032"/>
     </joint>
 
-    <link name="laser">
+    <link name="velodyne">
         <visual>
             <geometry>
                 <!-- 1.5in length 1.5in radius -->
@@ -250,10 +250,10 @@
         </visual>
     </link>
 
-    <joint name="laser_joint" type="fixed">
+    <joint name="velodyne_joint" type="fixed">
         <parent link="laser_base"/>
-        <child link="laser"/>
-        <origin rpy="0 0 3.1416" xyz="0 0 0.0333"/>
+        <child link="velodyne"/>
+        <origin rpy="0 0 0" xyz="0 0 0.0333"/>
     </joint>
 
     <link name="imu">
@@ -268,7 +268,7 @@
     <joint name="imu_joint" type="fixed">
         <parent link="top_box"/>
         <child link="imu"/>
-        <origin rpy="0 0 0" xyz="0.126 0 0.0699"/>
+        <origin rpy="0 0 3.14159" xyz="-0.12 0 0.0699"/>
     </joint>
 
     <link name="zed_center">
@@ -294,7 +294,7 @@
             <material name="black"/>
         </visual>
     </link>
-    
+
     <joint name="gps_joint" type="fixed">
         <parent link="front_post"/>
         <child link="gps"/>
