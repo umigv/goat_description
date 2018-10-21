@@ -22,6 +22,11 @@
 
     <!-- right between the two encoders  -->
     <link name="base_link">
+	<inertial>
+          <origin xyz="0 0 0.5" rpy="0 0 0"/>
+          <mass value="1"/>
+          <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
         <visual>
             <geometry>
                 <box size="0.01 0.01 0.01"/>
@@ -32,6 +37,11 @@
 
     <!-- center of the robot, for convenience -->
     <link name="base_center">
+	<inertial>
+          <origin xyz="0 0 0.5" rpy="0 0 0"/>
+          <mass value="1"/>
+          <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+        </inertial>
         <visual>
             <geometry>
                 <!-- 20in x 18.7in x 12in -->
