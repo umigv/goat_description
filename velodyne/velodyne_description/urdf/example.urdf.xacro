@@ -37,7 +37,7 @@
     <origin xyz="0 0 0.4" rpy="0 0 0" /> <!-- samples 440-->
   </VLP-16>
 
-<!-- adding this to include goat.urdf-->
+  <!-- adding this to include goat.urdf-->
   <xacro:include filename="$(find goat_description)/robots/goat.urdf"/>
   
 
