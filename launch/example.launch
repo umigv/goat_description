@@ -6,7 +6,7 @@
     <arg name="headless" default="false"/>
     <arg name="debug" default="false"/>
     <arg name="verbose" default="false"/>
-    <arg name="world_name" default="$(find goat_description)/world/example.world"/>
+    <arg name="world_name" default="$(find goat_description)/world/example.world.xacro"/>
     <arg name="robot" default="$(find goat_description)/robots/goat.urdf.xacro"/>
 
     <!-- Start gazebo and load the world -->
