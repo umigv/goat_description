@@ -1,39 +1,20 @@
 <?xml version="1.0"?>
-<robot name="goat">
-    <material name="white">
-        <color rgba="1 1 1 1"/>
-    </material>
-
-    <material name="black">
-        <color rgba="0 0 0 1"/>
-    </material>
-
-    <material name="yellow">
-        <color rgba="222 184 0 1"/>
-    </material>
-
-    <material name="cyan">
-        <color rgba="0 245 220 1"/>
-    </material>
-
-    <material name="redish">
-        <color rgba="255 0 0 0.5"/>
-    </material>
-
-	<!-- Added a joint to connect lidar and goat, parent to example.urdf-->
-	<joint name="goat_to_vel" type="fixed">
-        <parent link="ex_base_footprint"/>
-		<!-- downgrade base_link from root to chold-->
-        <child link="base_link"/>
-        <origin xyz="1 1 1" rpy="0 0 0"/>
-    </joint>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="goat">
+    <xacro:arg name="gpu" default="false"/>
+    <xacro:property name="gpu" value="$(arg gpu)" />
+    <!-- no GPU acceleration for us rn :-P -->
+    
+    <xacro:include filename="$(find goat_description)/robots/colors.xacro"/>
+ 
+    <!-- define base footprint -->
+    <link name="base_footprint" />
 
     <!-- right between the two encoders  -->
     <link name="base_link">
-	<inertial>
-          <origin xyz="0 0 0.5" rpy="0 0 0"/>
-          <mass value="1"/>
-          <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+        <inertial>
+            <origin xyz="0 0 0.5" rpy="0 0 0"/>
+            <mass value="1"/>
+            <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
         </inertial>
         <visual>
             <geometry>
@@ -43,12 +24,19 @@
         </visual>
     </link>
 
+    <!-- link base of the robot with the footprint -->
+    <joint name="footprint_base_link" type="fixed" >
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin xyz="0 0 0.5" rpy="0 0 0" />
+    </joint>
+
     <!-- center of the robot, for convenience -->
     <link name="base_center">
-	<inertial>
-          <origin xyz="0 0 0.5" rpy="0 0 0"/>
-          <mass value="1"/>
-          <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
+        <inertial>
+            <origin xyz="0 0 0.5" rpy="0 0 0"/>
+            <mass value="1"/>
+            <inertia ixx="100"  ixy="0"  ixz="0" iyy="100" iyz="0" izz="100" />
         </inertial>
         <visual>
             <geometry>
@@ -58,7 +46,6 @@
             <material name="white"/>
         </visual>
         <origin xyz="0.2020 0 -0.1"/>
-
         <collision>
             <geometry>
                 <box size="0.762 0.4572 0.3048"/>
@@ -120,7 +107,7 @@
         <origin rpy="0 0 1.5708" xyz="0 0 -0.1156"/>
     </joint>
 
-     <link name="bottom_frame">
+    <link name="bottom_frame">
         <visual>
             <geometry>
                 <!-- 16in x 18in x 1.1in -->
@@ -134,16 +121,6 @@
         <parent link="base_center"/>
         <child link="bottom_frame"/>
         <origin xyz="-0.4572 0 -0.13716"/>
-    </joint>
-
-    <!-- center of the footprint of the frame -->
-    <link name="base_footprint">
-    </link>
-
-    <joint name="base_footprint_joint" type="fixed">
-        <parent link="base_center"/>
-        <child link="base_footprint"/>
-        <origin xyz="0 0 -0.2814"/>
     </joint>
 
     <!-- position between two front wheels - encoders centered around this -->
@@ -243,88 +220,6 @@
         <origin xyz="-0.1799 0 0.26957"/>
     </joint>
 
-    <link name="laser_base">
-        <visual>
-            <geometry>
-                <cylinder length="0.0413" radius="0.0508"/>
-            </geometry>
-            <material name="white"/>
-        </visual>
-    </link>
-
-    <joint name="laser_base_joint" type="fixed">
-        <parent link="top_box"/>
-        <child link="laser_base"/>
-        <origin xyz="0.07 0 0.1032"/>
-    </joint>
-
-    <link name="goat_velodyne">
-        <visual>
-            <geometry>
-                <!-- 1.5in length 1.5in radius -->
-                <cylinder length="0.0381" radius="0.0381"/>
-            </geometry>
-            <material name="black"/>
-        </visual>
-	<!-- Add a ray sensor, and give it a name -->
-	<sensor type="ray" name="sensor">
-
-  	<!-- Position the ray sensor based on the specification. Also rotate
-       it by 90 degrees around the X-axis so that the <horizontal> rays
-       become vertical -->
-  	<pose>0, 0, 0, 1.5707 0 0</pose>
-
-	  <!-- Enable visualization to see the rays in the GUI -->
-  	<visualize>true</visualize>
-
-  	<!-- Set the update rate of the sensor -->
-  	<update_rate>30</update_rate>
-	<ray>
-		<!-- The scan element contains the horizontal and vertical beams.
-       		We are leaving out the vertical beams for this tutorial. -->
-		<scan>
-
-		<!-- The horizontal beams -->
-		<horizontal>
-		      <!-- The velodyne has 32 beams(samples) -->
-		      <samples>32</samples>
-
-		      <!-- Resolution is multiplied by samples to determine number of
-			   simulated beams vs interpolated beams. See:
-			   http://sdformat.org/spec?ver=1.6&elem=sensor#horizontal_resolution
-			   -->
-		      <resolution>1</resolution>
-
-		      <!-- Minimum angle in radians -->
-		      <min_angle>-0.53529248</min_angle>
-
-		      <!-- Maximum angle in radians -->
-		      <max_angle>0.18622663</max_angle>
-		    </horizontal>
-		  </scan>
-
-		  <!-- Range defines characteristics of an individual beam -->
-		  <range>
-
-		    <!-- Minimum distance of the beam -->
-		    <min>0.05</min>
-
-		    <!-- Maximum distance of the beam -->
-		    <max>70</max>
-
-		    <!-- Linear resolution of the beam -->
-		    <resolution>0.02</resolution>
-  		</range>
-		</ray>
-	</sensor>
-    </link>
-
-    <joint name="velodyne_joint" type="fixed">
-        <parent link="laser_base"/>
-        <child link="goat_velodyne"/>
-        <origin rpy="0 0 0" xyz="0 0 0.0333"/>
-    </joint>
-
     <link name="imu">
         <visual>
             <geometry>
@@ -370,6 +265,14 @@
         <origin xyz="0 0 0.26195"/>
     </joint>
 
+    <!-- including the LiDAR xacro file and creating an instance of it -->
+    <xacro:include filename="$(find goat_description)/velodyne/velodyne_description/urdf/VLP-16.urdf.xacro"/>
+    <VLP-16 parent="top_box" name="velodyne" topic="/velodyne_points" hz="10" samples="250" gpu="${gpu}">
+        <origin xyz="0 0 0.4" rpy="0 0 0" /> <!-- samples 440-->
+        <!-- the height number needs to be adjusted -->
+    </VLP-16>
+
+    <!-- any idea what this does? it looks important -->
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
             <robotNamespace>/</robotNamespace>

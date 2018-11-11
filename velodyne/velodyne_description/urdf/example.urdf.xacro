@@ -15,12 +15,12 @@
   <link name="ex_base_link" >
     <visual>
       <geometry>
-        <box size="0.5 0.5 0.1" />
+        <box size="0.005 0.005 0.001" />
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <box size="0.5 0.5 0.1" />
+        <box size="0.005 0.005 0.001" />
       </geometry>
     </collision>
     <inertial>
@@ -37,7 +37,7 @@
     <origin xyz="0 0 0.4" rpy="0 0 0" /> <!-- samples 440-->
   </VLP-16>
 
-<!-- adding this to include goat.urdf-->
+  <!-- adding this to include goat.urdf-->
   <xacro:include filename="$(find goat_description)/robots/goat.urdf"/>
   
 
