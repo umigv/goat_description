@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot xmlns="http://www.ros.org/wiki/xacro" name="world">
+<!--<robot xmlns="http://www.ros.org/wiki/xacro" name="world">-->
 <sdf version="1.5">
     <world name="default">
         <!-- A global light source -->
@@ -13,7 +13,9 @@
         
         <!--
         <xacro:include filename="$(find goat_description)/world/cone.xacro"/>
-        <cone></cone><!-- lets see if this puts a default one in-->
+        <cone></cone>
+        -->
+        <!-- lets see if this puts a default one in-->
 
         <!-- A unit box -->
         <!--
@@ -129,4 +131,4 @@
 
     </world>
 </sdf>
-</robot>
+<!--</robot>-->
