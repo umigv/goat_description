@@ -5,6 +5,7 @@
     <!-- no GPU acceleration for us rn :-P -->
     
     <xacro:include filename="$(find goat_description)/robots/colors.xacro"/>
+	<xacro:include filename="$(find goat_description)/robots/goat.gazebo"/>
  
     <!-- define base footprint -->
     <link name="base_footprint" />
@@ -91,22 +92,6 @@
         <origin xyz="-0.40386 0 -0.04318"/>
     </joint>
 
-    <link name="back_wheel">
-        <visual>
-            <geometry>
-                <cylinder length="0.0508" radius="0.0762"/>
-            </geometry>
-            <material name="black"/>
-            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
-        </visual>
-    </link>
-
-    <joint name="back_wheel_joint" type="continuous">
-        <parent link="mid_frame"/>
-        <child link="back_wheel"/>
-        <origin rpy="0 0 1.5708" xyz="0 0 -0.1156"/>
-    </joint>
-
     <link name="bottom_frame">
         <visual>
             <geometry>
@@ -139,29 +124,47 @@
         <origin xyz="0 0 0"/>
     </joint>
 
-    <link name="right_wheel">
+	<!--back wheel-->
+	<joint name="back_wheel_joint" type="continuous">
+        <parent link="base_center"/> <!-- changed -->
+        <child link="back_wheel"/>
+        <origin rpy="0 0 0" xyz="0 0 -0.1156"/>
+    </joint>
+
+    <link name="back_wheel">
         <visual>
             <geometry>
                 <cylinder length="0.1016" radius="0.1589"/>
             </geometry>
             <material name="black"/>
-            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+            <origin rpy="1.5708 0 0" xyz="-0.5 0 0"/>
         </visual>
 
-        <collision>
+		<collision>
             <geometry>
                 <cylinder length="0.1016" radius="0.1589"/>
             </geometry>
-            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+            <origin rpy="1.5708 0 0" xyz="-0.5 0 0"/>
         </collision>
+		
+		<inertial>
+		  <origin xyz="0 0 0" rpy="0 0 0"/>
+		  <mass value="5"/>
+		  <inertia
+		    ixx=".1" ixy="0.0" ixz="0.0"
+		    iyy=".1" iyz="0.0"
+		    izz=".1"/>
+		</inertial>
+
     </link>
 
     <!-- left wheel joint -->
-    <joint name="wheel0" type="continuous">
+    <joint name="left_wheel_joint" type="continuous">
         <parent link="base_center"/>
         <child link="left_wheel"/>
         <axis xyz="1 0 0"/>
         <origin rpy="0 0 1.5708" xyz="0.2 0.2922 -0.1"/>
+		<limit effort="1000" velocity="100"/>
     </joint>
 
     <link name="left_wheel">
@@ -179,15 +182,52 @@
             </geometry>
             <origin rpy="0 1.5708 0" xyz="0 0 0"/>
         </collision>
+
+		<inertial>
+		  <origin xyz="0 0 0" rpy="0 0 0"/>
+		  <mass value="5"/>
+		  <inertia
+		    ixx="0" ixy="0.0" ixz="0.0"
+		    iyy="0" iyz="0.0"
+		    izz="0"/>
+		</inertial>
     </link>
 
     <!-- right wheel joint -->
-    <joint name="wheel1" type="continuous">
+    <joint name="right_wheel_joint" type="continuous">
         <parent link="base_center"/>
         <child link="right_wheel"/>
         <axis xyz="1 0 0"/>
         <origin rpy="0 0 -1.5708" xyz="0.2 -0.2922 -0.1"/>
+		<limit effort="1000" velocity="100"/>
     </joint>
+
+	<link name="right_wheel">
+        <visual>
+            <geometry>
+                <cylinder length="0.1016" radius="0.1589"/>
+            </geometry>
+            <material name="black"/>
+            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder length="0.1016" radius="0.1589"/>
+            </geometry>
+            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+        </collision>
+		<inertial>
+		  <origin xyz="0 0 0" rpy="0 0 0"/>
+		  <mass value="5"/>
+		  <inertia
+		    ixx="0" ixy="0.0" ixz="0.0"
+		    iyy="0" iyz="0.0"
+		    izz="0"/>
+		</inertial>
+    </link>
+	
+
 
     <link name="top_box">
         <visual>
@@ -268,7 +308,7 @@
     <!-- including the LiDAR xacro file and creating an instance of it -->
     <xacro:include filename="$(find goat_description)/velodyne/velodyne_description/urdf/VLP-16.urdf.xacro"/>
     <VLP-16 parent="top_box" name="velodyne" topic="/velodyne_points" hz="10" samples="250" gpu="${gpu}">
-        <origin xyz="0 0 0.4" rpy="0 0 0" /> <!-- samples 440-->
+        <origin xyz="0 0 0.084" rpy="0 0 0" /> <!-- samples 440-->
         <!-- the height number needs to be adjusted -->
     </VLP-16>
 

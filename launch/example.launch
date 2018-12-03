@@ -28,8 +28,8 @@
         <param name="publish_frequency" type="double" value="5.0" /> <!-- original value: 30, lowered for speed -->
     </node>
 
-    <!-- RViz -->
+    <!--RViz-->
     <arg name="rviz" default="true"/>
-    <node if="$(arg rviz)" pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" args="-d $(find goat_description)/rviz/example.rviz" />
-
+    <node if="$(arg rviz)" pkg="rviz" type="rviz" name="$(anon rviz)" respawn="false" output="screen" args="-d $(find goat_description)/rviz/example.rviz"/>
+	
 </launch>
