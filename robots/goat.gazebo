@@ -36,7 +36,11 @@
   </gazebo>
 
 
-  <gazebo reference="chassis">
+  <gazebo reference="base_center">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+
+  <gazebo reference="base_board">
     <material>Gazebo/Orange</material>
   </gazebo>
 

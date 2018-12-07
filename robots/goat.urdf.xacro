@@ -5,7 +5,7 @@
     <!-- no GPU acceleration for us rn :-P -->
     
     <xacro:include filename="$(find goat_description)/robots/colors.xacro"/>
-	<xacro:include filename="$(find goat_description)/robots/goat.gazebo"/>
+    <xacro:include filename="$(find goat_description)/robots/goat.gazebo"/>
  
     <!-- define base footprint -->
     <link name="base_footprint" />
@@ -76,6 +76,43 @@
         <origin xyz="-0.3556 0 0.07112"/>
     </joint>
 
+    <!--back wheel joint-->
+    <joint name="back_wheel_joint" type="continuous">
+        <parent link="base_center"/> 
+        <child link="back_wheel"/>
+        <origin rpy="0 0 0" xyz="0 0 -0.1156"/>
+        <dynamics damping="1.0" friction="1.0" />
+    </joint>
+
+    <link name="back_wheel">
+        <visual>
+            <geometry>
+                <!--<cylinder length="0.1016" radius="0.1589"/> -->
+                <sphere radius="0.1589" />
+            </geometry>
+            <material name="black"/>
+            <origin rpy="1.5708 0 0" xyz="-0.5 0 0"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <!-- <cylinder length="0.1016" radius="0.1589"/> -->
+                <sphere radius="0.1589" />
+            </geometry>
+            <origin rpy="1.5708 0 0" xyz="-0.5 0 0"/>
+        </collision>
+        
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 0 0"/>
+          <mass value="5"/>
+          <inertia
+            ixx=".1" ixy="0.0" ixz="0.0"
+            iyy=".1" iyz="0.0"
+            izz=".1"/>
+        </inertial>
+
+    </link>
+
     <link name="mid_frame">
         <visual>
             <geometry>
@@ -124,47 +161,14 @@
         <origin xyz="0 0 0"/>
     </joint>
 
-	<!--back wheel-->
-	<joint name="back_wheel_joint" type="continuous">
-        <parent link="base_center"/> <!-- changed -->
-        <child link="back_wheel"/>
-        <origin rpy="0 0 0" xyz="0 0 -0.1156"/>
-    </joint>
-
-    <link name="back_wheel">
-        <visual>
-            <geometry>
-                <cylinder length="0.1016" radius="0.1589"/>
-            </geometry>
-            <material name="black"/>
-            <origin rpy="1.5708 0 0" xyz="-0.5 0 0"/>
-        </visual>
-
-		<collision>
-            <geometry>
-                <cylinder length="0.1016" radius="0.1589"/>
-            </geometry>
-            <origin rpy="1.5708 0 0" xyz="-0.5 0 0"/>
-        </collision>
-		
-		<inertial>
-		  <origin xyz="0 0 0" rpy="0 0 0"/>
-		  <mass value="5"/>
-		  <inertia
-		    ixx=".1" ixy="0.0" ixz="0.0"
-		    iyy=".1" iyz="0.0"
-		    izz=".1"/>
-		</inertial>
-
-    </link>
-
     <!-- left wheel joint -->
     <joint name="left_wheel_joint" type="continuous">
         <parent link="base_center"/>
         <child link="left_wheel"/>
         <axis xyz="1 0 0"/>
         <origin rpy="0 0 1.5708" xyz="0.2 0.2922 -0.1"/>
-		<limit effort="1000" velocity="100"/>
+        <limit effort="1000" velocity="100"/>
+        <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
     <link name="left_wheel">
@@ -173,24 +177,24 @@
                 <cylinder length="0.1016" radius="0.1589"/>
             </geometry>
             <material name="black"/>
-            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+            <origin xyz="0 0 0" rpy="0 1.5708 0"/>
         </visual>
 
         <collision>
             <geometry>
                 <cylinder length="0.1016" radius="0.1589"/>
             </geometry>
-            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+            <origin xyz="0 0 0" rpy="0 1.5708 0"/>
         </collision>
 
-		<inertial>
-		  <origin xyz="0 0 0" rpy="0 0 0"/>
-		  <mass value="5"/>
-		  <inertia
-		    ixx="0" ixy="0.0" ixz="0.0"
-		    iyy="0" iyz="0.0"
-		    izz="0"/>
-		</inertial>
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+          <mass value="5"/>
+          <inertia
+            ixx="0.1" ixy="0.0" ixz="0.0"
+            iyy="0.1" iyz="0.0"
+            izz="0.1"/>
+        </inertial>
     </link>
 
     <!-- right wheel joint -->
@@ -199,34 +203,35 @@
         <child link="right_wheel"/>
         <axis xyz="1 0 0"/>
         <origin rpy="0 0 -1.5708" xyz="0.2 -0.2922 -0.1"/>
-		<limit effort="1000" velocity="100"/>
+        <limit effort="1000" velocity="100"/>
+        <dynamics damping="1.0" friction="1.0"/>
     </joint>
 
-	<link name="right_wheel">
+    <link name="right_wheel">
         <visual>
             <geometry>
                 <cylinder length="0.1016" radius="0.1589"/>
             </geometry>
             <material name="black"/>
-            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+            <origin xyz="0 0 0" rpy="0 1.5708 0"/>
         </visual>
 
         <collision>
             <geometry>
                 <cylinder length="0.1016" radius="0.1589"/>
             </geometry>
-            <origin rpy="0 1.5708 0" xyz="0 0 0"/>
+            <origin xyz="0 0 0" rpy="0 1.5708 0"/>
         </collision>
-		<inertial>
-		  <origin xyz="0 0 0" rpy="0 0 0"/>
-		  <mass value="5"/>
-		  <inertia
-		    ixx="0" ixy="0.0" ixz="0.0"
-		    iyy="0" iyz="0.0"
-		    izz="0"/>
-		</inertial>
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 1.5708 0"/>
+          <mass value="5"/>
+          <inertia
+            ixx="0.1" ixy="0.0" ixz="0.0"
+            iyy="0.1" iyz="0.0"
+            izz="0.1"/>
+        </inertial>
     </link>
-	
+    
 
 
     <link name="top_box">
