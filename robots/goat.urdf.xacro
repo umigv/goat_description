@@ -311,11 +311,12 @@
     </joint>
 
     <!-- including the LiDAR xacro file and creating an instance of it -->
+    <!-- somehow the xacro needs to be in the VLP-16 tags for it to show up -->
     <xacro:include filename="$(find goat_description)/velodyne/velodyne_description/urdf/VLP-16.urdf.xacro"/>
-    <VLP-16 parent="top_box" name="velodyne" topic="/velodyne_points" hz="10" samples="250" gpu="${gpu}">
+    <xacro:VLP-16 parent="top_box" name="velodyne" topic="/velodyne_points" hz="10" samples="250" gpu="${gpu}">
         <origin xyz="0 0 0.084" rpy="0 0 0" /> <!-- samples 440-->
         <!-- the height number needs to be adjusted -->
-    </VLP-16>
+    </xacro:VLP-16>
 
     <!-- any idea what this does? it looks important -->
     <gazebo>
