@@ -18,6 +18,7 @@
       <minDepth value="0.0001" />
   </gazebo-->    
 
+  <!-- This controller pkg is the key to make gazebo sub to /cmd_vel and etc-->
   <gazebo>
     <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
       <legacyMode>false</legacyMode>

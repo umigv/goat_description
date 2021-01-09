@@ -318,10 +318,10 @@
         <!-- the height number needs to be adjusted -->
     </xacro:VLP-16>
 
-    <!-- any idea what this does? it looks important -->
-    <gazebo>
+    <!-- any idea what this does? it looks important, disabling for now cuz it has no effect -->
+    <!--gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
             <robotNamespace>/</robotNamespace>
         </plugin>
-    </gazebo>
+    </gazebo-->
 </robot>
