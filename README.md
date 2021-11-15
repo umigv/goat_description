@@ -16,7 +16,7 @@ Clone this repository into your `catkin` workspace, then run `catkin build`. Opt
 
 ## Teleop
 
-Currently, teleoperation of the robot in the Gazebo sim requires the `turtlebot` package to be installed and made (remember to run `catkin_make` and `source ~/catkin_ws/devel/setup.bash` before trying to launch anything!). 
+Currently, teleoperation of the robot in the Gazebo sim requires the `turtlebot` package to be installed and made (remember to run `catkin build` and `source ~/catkin_ws/devel/setup.bash` before trying to launch anything!). 
 
 1. Run `roslaunch goat_description mybot_world.launch` to start up the Gazebo sim
 2. Start up the turtlebot teleoperation node. This node accepts keyboard input and publishes `geometry_msgs::Twist` messages that can be used. Do this in a new terminal window with `rosrun turtlesim turtle_teleop_key` and note that this terminal must be pulled up for the input to actually be accepted. 
